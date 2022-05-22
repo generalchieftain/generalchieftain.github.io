@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <script src="https://unpkg.com/notie@4.3.1/dist/notie.min.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.png">
+
+    <title>Memeland Game</title>
+</head>
+<body>
+    <div data-screen="start" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/ship-in-a-bottle.gif" height="300">
+                </div>  
+            </div>
+        </div>
+        <div class="my-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>To start the game - enter your captain's name!</p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center" id="cap_name_input_block">
+                            <input type="text" id="user_name_input" size="50">
+                            <button type="button" class="btn" id="user_name_btn">Start</button>
+                            <button type="button" hidden id="user_name_next_btn" data-next-screen="storm"></button>
+                        </div>
+                        <!-- <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="storm">Start</button>
+                        </div> -->
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="storm" data-background-img="assets/storm.jpg" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src='assets/storm.jpg'>
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>The brave captain {name} explores the Broken Sea in search of the world's legendary treasure island known as the “Memeland” </p>
+                        <p>... but gets caught in a storm.</p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <p data-next-option-result>What will you do?</p>
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-option-result="r1">HODL tight</button>
+                            <button type="button" class="btn" data-next-option-result="r2">Jump overboard in a panic</button>
+                        </div>
+                        <div class="option-results">
+                            <div data-option-result="r1">
+                                <p>You bravely weathered the storm and are ready to move forward… </p>
+                                <button type="button" class="btn" data-next-screen="land-ho">Go forward</button>
+                            </div>
+                            <div data-option-result="r2">
+                                <p>You drowned in the Broken Sea. Sad, but no one will remember you.</p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="land-ho" data-background-img="assets/full_bg_layered.jpg" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src='assets/land-ho.png'>
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>Land Ho! You see an island on the horizon. </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <p data-next-option-result>Where will you land? (see points on the map)</p>
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-option-result="s2r1">Point 1</button>
+                            <button type="button" class="btn" data-next-option-result="s2r2">Point 2</button>
+                            <button type="button" class="btn" data-next-option-result="s2r3" data-validity-id-trace="Z2VuZXJhbHdoaXRlY2F0">Point 3</button>
+                            <!-- <button type="button" class="btn" data-next-option-result="s2r3" data-valid-id=Z2VuZXJhbHdoaXRlY2F0>Point 4</button> -->
+                        </div>
+                        <div class="option-results">
+                            <div data-option-result="s2r1">
+                                <p>Your ship was attacked by a huge shark, you’re ded. </p>
+                                <button type="button" class="btn  replay-btn">Replay</button>
+                            </div>
+                            <div data-option-result="s2r2">
+                                <p>You successfully landed.</p>
+                                <button type="button" class="btn" data-next-screen="first-gates">Go forward</button>
+                            </div>
+                            <div data-option-result="s2r3">
+                                <p>You were eaten by a kraken, oops…</p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="first-gates" data-background-img="assets/you_shall_not_pass/gates.png" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/you_shall_not_pass/gates.png">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>You approach the destroyed altar and the gate keeper Ray appears in front of you from the darkness.  </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="first-gates-2">Next</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="first-gates-2" data-background-img="assets/you_shall_not_pass/gates.png" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/you_shall_not_pass/gates_full.png">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <img src="assets/you_shall_not_pass/gatekeeper_ray.gif" width="100">
+                            </div>
+                            <div class="p-2 align-self-center">
+                                <p class="w-100 dialogs-name">Ray</p>
+
+                                <p>“Ahoy, captain. If you want to go through the gate - you must say the secret phrase… A secret phrase that stops monsters (and destroys bridges)” </p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center" id="secret_phrase_input_block">
+                            <input type="text" id="gates_secret_phrase" name="secret_phrase" size="50">
+                            <button type="button" class="btn" id="gates_secret_phrase_btn">Say It</button>
+                            <button type="button" hidden id="gates_secret_phrase_option_btn" data-next-option-result="s4r1"></button>
+                        </div>
+
+                        <div class="option-results">
+                            <div data-option-result="s4r1">
+                                <p>Yes, you can pass!</p>
+                                <div class="text-center">
+                                    <button type="button" class="btn" data-next-screen="goblins">Go forward</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div data-screen="goblins" data-background-img="assets/goblins/tunnels.jpg" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/goblins/goblins_tonnels.png">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>You go inside and... goblins attack you.</p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <p data-next-option-result>Your actions?</p>
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-option-result="s5r1">Use a pistol <img src="assets/icons/pistol.png" width="16"></button>
+                            <button type="button" class="btn" data-next-option-result="s5r2">Use a saber <img src="assets/icons/saber.png" width="16"></button>
+                            <button type="button" class="btn" data-next-option-result="s5r3">Use a torch <img src="assets/icons/torch.png" width="16"></button>
+                            <button type="button" class="btn" data-next-option-result="s5r4">Use a mouse <img src="assets/icons/mouse.png" width="16"></button>
+                        </div>
+                        <div class="option-results">
+                            <div data-option-result="s5r1">
+                                <p>There are so many goblins! You can't shoot them all. </p>
+                                <button type="button" class="btn  replay-btn">Replay</button>
+                            </div>
+                            <div data-option-result="s5r2">
+                                <p>There are so many goblins! You can't cut them all.</p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div>
+                            <div data-option-result="s5r3">
+                                <p>Goblins run away at the sight of fire.</p>
+                                <button type="button" class="btn" data-next-screen="troll">Go forward</button>
+                            </div>
+                            <div data-option-result="s5r4">
+                                <p>Why do you have a mouse? </p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
+
+            
+
+        </div>
+    </div>
+
+
+    <div data-screen="troll" class="screens py-5" data-background-img="assets/full_bg_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/troll/meadow.jpg">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>You leave the altar, cross the bridge and enter the meadow. 
+                        You hear strange sounds. </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="troll-1">Next</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-screen="troll-1" class="screens py-5" data-background-img="assets/full_bg_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/troll/meadow.jpg">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>"I fu***d yo** m**". "I fu***d yo** m**".
+                        You don't understand what it is, but you feel uncomfortable. </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="troll-2">Next</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-screen="troll-2"  class="screens py-5" data-background-img="assets/full_bg_grey_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/troll/troll_field.png">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>You keep walking through a meadow… and out of nowhere a big troll attacks you!</p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <p data-next-option-result>Your actions?</p>
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-option-result="s6r1">Use a pistol <img src="assets/icons/pistol.png" width="16"></button>
+                            <button type="button" class="btn" data-next-option-result="s6r2">Use a saber <img src="assets/icons/saber.png" width="16"></button>
+                            <button type="button" class="btn" data-next-option-result="s6r4">Use a mouse <img src="assets/icons/mouse.png" width="16"></button>
+                            <button type="button" class="btn" data-next-option-result="s6r3">Pass by </button>
+                        </div>
+                        <div class="option-results">
+                            <div data-option-result="s6r1">
+                                <p>Your bullets don’t harm his armor. </p>
+                                <button type="button" class="btn  replay-btn">Replay</button>
+                            </div>
+                            <div data-option-result="s6r2">
+                                <p>“Your saber is too small, I don’t feel it”.</p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div>
+                            <div data-option-result="s6r3">
+                                <p>The troll can't figure out what's wrong, he can't hurt you.</p>
+                                <button type="button" class="btn" data-next-screen="cave">Go forward</button>
+                            </div>
+                            <div data-option-result="s6r4">
+                                <p>Why do you have a mouse, for real? </p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
+
+            
+
+        </div>
+    </div>
+
+
+    <div data-screen="cave" class="screens py-5" data-background-img="assets/full_bg_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/cave.jpg">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>You come to a cave with ritual symbols.<br>
+                        The gatekeeper appears. </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="cave-1">Next</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="cave-1" class="screens py-5" data-background-img="assets/full_bg_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/cave.jpg">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <img src="assets/you_shall_not_pass/gatekeeper_ray.gif" width="100">
+                            </div>
+                            <div class="p-2 align-self-center">
+                                <p class="w-100 dialogs-name">Ray</p>
+
+                                <p>“The gods are unhappy that you came here, but I can save you from them if you answer my question.” </p>
+                                <p>"What year was the legendary ship 9GAG built?"</p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center" id="cave_secret_phrase_input_block">
+                            <input type="text" id="cave_secret_phrase" name="secret_phrase" size="50">
+                            <button type="button" class="btn" id="cave_secret_phrase_btn">Say It</button>
+                            <button type="button" hidden id="cave_secret_phrase_option_btn" data-next-option-result="s7r1"></button>
+                        </div>
+
+                        <div class="option-results">
+                            <div data-option-result="s7r1">
+                                <p>Yes! You can pass!</p>
+                                <div class="text-center">
+                                    <button type="button" class="btn" data-next-screen="kraken">Go forward</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="kraken" class="screens py-5" data-background-img="assets/full_bg_grey_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/kraken/treasure_chest_location_2.png">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>Finally, you see the treasure chest! <br>
+                        Wait… </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="kraken-1">Next</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="kraken-1" class="screens py-5" data-background-img="assets/full_bg_grey_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/kraken/treasure_chest_location_2.png">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>What is it there? …. </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="kraken-2">Next</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-screen="kraken-2" class="screens py-5" data-background-img="assets/full_bg_grey_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/kraken/cat_and_kraken.png">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>Oh no, it's a huge Kraken rising out of the water right next to the chest! <br>
+                            You look closely and see a small but grumpy cat…</p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="kraken-3">Next</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="kraken-3" class="screens py-5" data-background-img="assets/full_bg_grey_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <div class="d-flex flex-row justify-content-center">
+                        <div><img src="assets/kraken/cat_and_kraken.png"></div>
+                        <div class="align-self-end"><img src="assets/kraken/grumpy_cat.png" width="200"></div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>Oh no, it's a huge Kraken rising out of the water right next to the chest! <br>
+                            You look closely and see a small but grumpy cat…</p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <p data-next-option-result>Your actions?</p>
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-option-result="s8r1">Use a pistol <img src="assets/icons/pistol.png" width="16"></button>
+                            <button type="button" class="btn" data-next-option-result="s8r2">Use a saber <img src="assets/icons/saber.png" width="16"></button>
+                            <button type="button" class="btn" data-next-screen="inside_kraken" data-next-option-result>Come closer </button>
+                            <button type="button" class="btn" data-next-screen="grumpy_cat" data-next-option-result>Use a mouse <img src="assets/icons/mouse.png" width="16"></button>
+                        </div>
+                        <div class="option-results">
+                            <div data-option-result="s8r1">
+                                <p>Your bullets don’t harm Kraken.</p>
+                                <button type="button" class="btn  replay-btn">Replay</button>
+                            </div>
+                            <div data-option-result="s8r2">
+                                <p>Your saber doesn't harm Kraken.</p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div>
+                            <!-- <div data-option-result="s6r3">
+                                <p>The troll can't figure out what's wrong, he can't hurt you.</p> generalwhitecat
+                                <button type="button" class="btn" data-next-screen="cave">Go forward</button> moniezz
+                            </div>
+                            <div data-option-result="s6r4">
+                                <p>Why do you have a mouse, for real? </p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div> -->
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="inside_kraken" class="screens py-5" data-background-img="assets/kraken/inside_kraken.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/kraken/inside_kraken.jpg">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>The kraken has eaten you, but you are alive inside it. You look around and see several bags of $MEME. </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <p data-next-option-result>Your actions?</p>
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-option-result="s82r1">Use a pistol <img src="assets/icons/pistol.png" width="16"></button>
+                            <button type="button" class="btn" data-next-option-result="s82r2">Use a saber <img src="assets/icons/saber.png" width="16"></button> 
+                        </div>
+                        <div class="option-results">
+                            <div data-option-result="s82r1">
+                                <p>Your shooting caused heartburn in the kraken and you drowned in bile. </p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div>
+                            <div data-option-result="s82r2">
+                                <p>You carved your way out and got out with the treasure.</p>
+                                <button type="button" class="btn" data-next-screen="reward_bags">Next</button>
+                            </div>
+                            <!-- <div data-option-result="s6r3">
+                                <p>The troll can't figure out what's wrong, he can't hurt you.</p>
+                                <button type="button" class="btn" data-next-screen="cave">Go forward</button>
+                            </div>
+                            <div data-option-result="s6r4">
+                                <p>Why do you have a mouse, for real? </p>
+                                <button type="button" class="btn replay-btn">Replay</button>
+                            </div> -->
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="grumpy_cat" class="screens py-5" data-background-img="assets/full_bg_grey_layered.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <div class="d-flex flex-row justify-content-center">
+                        <div><img src="assets/kraken/cat_and_kraken.png"></div>
+                        <div class="align-self-end"><img src="assets/kraken/happy_cat.png" width="200"></div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p>You gave a mouse to a grumpy cat. He’s happy. Looks like he is Kraken’s friend. Kraken dives underwater. <br>
+                        Now you can get your treasure. </p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <p data-next-option-result>Your actions?</p>
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="reward_chest">Open the chest</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="reward_bags" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/bags.png" class="mt-5">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p class="text-center">Your reward is bags of $MEME!!!</p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="finish">Finish the game</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="reward_chest" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="assets/treasure_chest.png" class="mt-5">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3">
+                        <p class="text-center">Your reward is a chest, full of $MEME!!!</p>
+                    </div>  
+                </div>
+            </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-8 offset-2 choices-block p-3">
+                        <div class="text-center">
+                            <button type="button" class="btn" data-next-screen="finish">Finish the game</button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-screen="finish" class="screens py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 img-block text-center">
+                    <img src="https://c.tenor.com/5H3pUTkK7eoAAAAC/johnny-depp-pirate.gif">
+                </div>  
+            </div>
+        </div>
+        <div class="my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 dialogs-block p-3 text-center">
+                        <p>Thank you for playing, {name}!</p>
+
+                        <p>Developed by <a href="https://twitter.com/generalwhitecat">@generalwhitecat</a> with the help of <a href="https://twitter.com/mtks110">@moniezz</a>.</p>
+
+                        <p class="my-5">
+                            This game was not developed for commercial use. It's just a fan project for the Memeland community.<br>
+                            The rights to all materials used belong to their respective owners.
+                        </p>
+
+                        <p class="text-left" style="">
+                            Materials used are taken from the following sources: <a id="finish_show_sources_trs" href="#" style="color:#ffffff;">show sources</a>
+                            <ul class="text-left" style="text-align: left; font-size:14px;" id="finish_sources_list_trs">
+                                <li>https://www.memeland.com/</li>
+                                <li>https://dribbble.com/shots/5777943-UI-for-pixel-art-game-Dice-Heroes</li> 
+                                <li>https://franuka.itch.io/rpg-icon-pack </li>
+                                <li>https://itch.io/game-assets/tag-gui/tag-pixel-art </li>
+                                <li>https://pluspixels.tumblr.com/post/644918533404442624/memes-drawn-for-a-pixel-based-coloring-app-back </li>
+                                <li>https://www.nicepng.com/ourpic/u2q8q8u2a9w7y3t4_torch-torch-pixel-art/ </li>
+                                <li>https://www.nicepng.com/ourpic/u2e6r5t4q8a9q8i1_pixel-mouse-mouse-pixel-art/</li>
+                            </ul>
+                        </p>
+                        
+                        <!-- <a href="#" id="secret_thing">click me</a> -->
+
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+        body {
+            background: #283C43;
+            /*background: #55ADE2;*/
+
+            color: #ffffff;
+            font-family: 'VT323', monospace;
+            font-size:18px;
+            background-repeat: no-repeat;
+            /*background-image: url("https://drive.google.com/uc?export=view&id=1BoYIhSsUlKIr1J8x5YRDbVVjnPnraWwJ");*/
+            backdrop-filter: blur(20px);
+            background-position: center;
+            background-size: cover;
+            min-height: 100%;
+            min-width: 100%;
+        }
+
+        .img-block img {
+            max-width: 100%;
+            max-height: 500px;
+            /*border: 1px solid black;*/
+        }
+        .dialogs-block {
+            background: #749593;
+            border: 1px solid #ffffff;
+        }
+
+        .dialogs-name {
+            color: #fec837;
+        }
+
+
+        .choices-block {
+            color: #b9cbc9;
+            border: 1px solid #b9cbc9;
+            background-color: #283C43;
+        }
+
+        .choices-block button{
+            color: #ffffff;
+            background-color: #FD9979;
+            border: 3px solid #d87f63;
+        }
+
+        .choices-block button:hover{
+            color: #ffffff;
+            background-color: #6F6F6F;
+            border: 3px solid #4a4a4a;
+        }
+
+        .option-results {
+            text-align: center;
+        }
+    </style>
+
+
+
+</body>
+</html>
